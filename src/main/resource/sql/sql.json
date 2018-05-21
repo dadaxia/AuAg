@@ -1,0 +1,134 @@
+{
+  CREATE DATABASE `gold` /*!40100 DEFAULT CHARACTER SET utf8 */
+
+  CREATE TABLE `t_au` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `highPrice` varchar(12) DEFAULT NULL,
+  `lowPrice` varchar(12) DEFAULT NULL,
+  `nowPrice` varchar(12) NOT NULL,
+  `changePoint` varchar(12) DEFAULT NULL,
+  `changeRate` varchar(12) DEFAULT NULL,
+  `openPrice` varchar(12) DEFAULT NULL,
+  `yesterdayClosePrice` varchar(12) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=44561 DEFAULT CHARSET=utf8
+}
+{
+  CREATE TABLE `t_ag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `highPrice` varchar(12) DEFAULT NULL,
+  `lowPrice` varchar(12) DEFAULT NULL,
+  `nowPrice` varchar(12) NOT NULL,
+  `changePoint` varchar(12) DEFAULT NULL,
+  `changeRate` varchar(12) DEFAULT NULL,
+  `openPrice` varchar(12) DEFAULT NULL,
+  `yesterdayClosePrice` varchar(12) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=45188 DEFAULT CHARSET=utf8
+}
+{
+  CREATE TABLE `t_agcny` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `highPrice` varchar(12) DEFAULT NULL,
+  `lowPrice` varchar(12) DEFAULT NULL,
+  `nowPrice` varchar(12) NOT NULL,
+  `changePoint` varchar(12) DEFAULT NULL,
+  `changeRate` varchar(12) DEFAULT NULL,
+  `openPrice` varchar(12) DEFAULT NULL,
+  `yesterdayClosePrice` varchar(12) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=21664 DEFAULT CHARSET=utf8
+}
+{
+  CREATE TABLE `t_agtd` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nowprice` int(5) NOT NULL,
+  `todayOpenPrice` int(5) NOT NULL,
+  `yesterdayClosePrice` int(5) NOT NULL,
+  `maxPrice` int(5) DEFAULT NULL,
+  `floorPrice` int(5) DEFAULT NULL,
+  `tradeVolumn` int(14) NOT NULL,
+  `unit` varchar(22) NOT NULL,
+  `isOpen` tinyint(1) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=195984 DEFAULT CHARSET=utf8
+}
+{
+  CREATE TABLE `t_aucny` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `highPrice` varchar(12) DEFAULT NULL,
+  `lowPrice` varchar(12) DEFAULT NULL,
+  `nowPrice` varchar(12) NOT NULL,
+  `changePoint` varchar(12) DEFAULT NULL,
+  `changeRate` varchar(12) DEFAULT NULL,
+  `openPrice` varchar(12) DEFAULT NULL,
+  `yesterdayClosePrice` varchar(12) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=69123 DEFAULT CHARSET=utf8
+}
+{
+  CREATE TABLE `t_autd` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `highPrice` varchar(12) DEFAULT NULL,
+  `lowPrice` varchar(12) DEFAULT NULL,
+  `nowPrice` varchar(12) NOT NULL,
+  `changePoint` varchar(12) DEFAULT NULL,
+  `changeRate` varchar(12) DEFAULT NULL,
+  `openPrice` varchar(12) DEFAULT NULL,
+  `yesterdayClosePrice` varchar(12) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=45907 DEFAULT CHARSET=utf8
+}
+{
+  CREATE TABLE `t_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `newsid` varchar(32) DEFAULT NULL,
+  `autoId` varchar(32) DEFAULT NULL,
+  `title` varchar(655) DEFAULT NULL,
+  `content` varchar(655) DEFAULT NULL,
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `type` varchar(12) DEFAULT NULL,
+  `importance` varchar(5) DEFAULT NULL,
+  `source` varchar(22) DEFAULT NULL,
+  `operation` varchar(22) DEFAULT NULL,
+  `beforenum` varchar(12) DEFAULT NULL,
+  `forecast` varchar(12) DEFAULT NULL,
+  `reality` varchar(12) DEFAULT NULL,
+  `time` varchar(12) DEFAULT NULL,
+  `predictTime` varchar(12) DEFAULT NULL,
+  `code` varchar(22) DEFAULT NULL,
+  `state` varchar(22) DEFAULT NULL,
+  `effectType` int(2) DEFAULT NULL,
+  `effect` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+  ) ENGINE=InnoDB AUTO_INCREMENT=25582 DEFAULT CHARSET=utf8
+}
+{
+  CREATE TABLE `t_usd` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `highPrice` varchar(15) DEFAULT NULL,
+  `lowPrice` varchar(15) DEFAULT NULL,
+  `nowPrice` varchar(15) NOT NULL,
+  `changePoint` varchar(12) DEFAULT NULL,
+  `changeRate` varchar(12) DEFAULT NULL,
+  `openPrice` varchar(15) DEFAULT NULL,
+  `yesterdayClosePrice` varchar(15) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=45976 DEFAULT CHARSET=utf8
+}
+{
+
+}

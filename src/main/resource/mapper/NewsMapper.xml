@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gold.cn.dao.NewsDao">
+
+    <!--
+    <resultMap id="BaseResultMap" type="com.gold.cn.model.News">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="newsid" property="newsId" jdbcType="varchar" />
+        <result column="autoId" property="autoId" jdbcType="varchar" />
+        <result column="title" property="title" jdbcType="varchar" />
+        <result column="content" property="content" jdbcType="varchar" />
+        <result column="date" property="time" jdbcType="timestamp" />
+        <result column="type" property="type" jdbcType="varchar" />
+        <result column="importance" property="importance" jdbcType="varchar" />
+        <result column="source" property="source" jdbcType="varchar" />
+        <result column="operation" property="operation" jdbcType="varchar" />
+        <result column="beforenum" property="before" jdbcType="varchar" />
+        <result column="forecast" property="forecast" jdbcType="varchar" />
+        <result column="reality" property="reality" jdbcType="varchar" />
+        <result column="time" property="date" jdbcType="varchar" />
+        <result column="predictTime" property="predictTime" jdbcType="varchar" />
+        <result column="code" property="code" jdbcType="varchar" />
+        <result column="state" property="state" jdbcType="varchar" />
+        <result column="effectType" property="effectType" jdbcType="int" />
+        <result column="effect" property="effect" jdbcType="varchar" />
+
+    </resultMap>-->
+
+    <insert id="insertNews" parameterType="com.gold.cn.model.News" useGeneratedKeys="true" keyProperty="id" >
+        insert into t_news
+              (id,newsid,autoId,title,content,date,type,importance,source,operation,beforenum,forecast,reality,time,predictTime,code,state,effectType,effect)
+        values
+              (#{id},#{newsId},#{autoId},#{title},#{content},#{date},#{type},#{importance},#{source},#{operation},#{before},#{forecast},#{reality},#{time},#{predictTime},#{code},#{state},#{effectType},#{effect})
+    </insert>
+
+    <insert id="insertNewsBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into t_news (id,newsid,autoId,title,content,date,type,importance,source,operation,beforenum,forecast,reality,time,predictTime,code,state,effectType,effect)  values
+        <foreach collection="list" item="wdSolt" index="index" separator=",">
+            (
+            #{id},#{newsId},#{autoId},#{title},#{content},#{date},#{type},#{importance},#{source},#{operation},#{before},#{forecast},#{reality},#{time},#{predictTime},#{code},#{state},#{effectType},#{effect}
+            )
+        </foreach>
+    </insert>
+
+    <select id="getAllNews" resultType="com.gold.cn.model.News">
+        select * from t_news
+    </select>
+
+    <select id="getNewsByAutoId" parameterType="String" resultType="com.gold.cn.model.News">
+        select * from t_news where autoId = #{autoId}
+    </select>
+
+    <select id="getNewsByTime" resultType="com.gold.cn.model.News">
+        select * from t_news where date = #{date}
+    </select>
+
+    <select id="getFirstTwentyNewsTitle" resultType="String">
+       SELECT title FROM `t_news` ORDER BY id DESC limit 200
+    </select>
+
+    <select id="getLatestTwentyNews" resultType="com.gold.cn.model.News">
+        SELECT
+        *
+        FROM `t_news` ORDER BY id Desc limit 20
+    </select>
+
+    <delete id="deleteNewsByAutoId" parameterType="String">
+        delete from t_news where autoId = #{autoId}
+    </delete>
+
+
+</mapper>

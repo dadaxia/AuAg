@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+    <task:annotation-driven />
+    <context:component-scan base-package="com.gold.cn.task" />
+
+    <bean id="propertyConfigurer" class="com.gold.cn.util.PropertyConfigure">
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath:properties/gold.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <context:property-placeholder location="classpath:properties/jdbc.properties" />
+    <!--配置数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>${jdbc_Driver}</value>
+        </property>
+        <property name="url">
+            <value>${jdbc_url}</value>
+        </property>
+        <property name="username">
+            <value>${jdbc_username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc_password}</value>
+        </property>
+    </bean>
+
+    <context:property-placeholder location="classpath:properties/log4j.properties" />
+    <!--自动扫描所有的XXXMapper.xml，对应的接口文件，这样就不用一个一个手动配置Mapper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.gold.cn.dao" />
+    </bean>
+    <!--配置mybatis的文件，mapperLocations配置***Mapper.xml文件位置，configLocation配置mybatis-config文件位置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:mapper/*.xml" />
+    </bean>
+
+    <!--自动扫描注解的bean
+    <context:component-scan base-package="com.gold.cn.service" />
+    -->
+
+</beans>

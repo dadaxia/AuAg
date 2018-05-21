@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gold.cn.dao.USDDao">
+
+    <insert id="insert" parameterType="com.gold.cn.model.USD" useGeneratedKeys="true" keyProperty="id" >
+        insert into t_usd
+              (id,code,highPrice,lowPrice,nowPrice,changePoint,changeRate,openPrice,yesterdayClosePrice,time)
+        values
+              (#{id},#{code},#{highPrice},#{lowPrice},#{nowPrice},#{changePoint},#{changeRate},#{openPrice},#{yesterdayClosePrice},#{time})
+    </insert>
+
+    <!--
+    <insert id="insertNewsBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into t_news (id,newsid,autoId,title,content,date,type,importance,source,operation,beforenum,forecast,reality,time,predictTime,code,state,effectType,effect)  values
+        <foreach collection="list" item="wdSolt" index="index" separator=",">
+           (
+             #{id},#{newsId},#{autoId},#{title},#{content},#{date},#{type},#{importance},#{source},#{operation},#{before},#{forecast},#{reality},#{time},#{predictTime},#{code},#{state},#{effectType},#{effect}
+           )
+        </foreach>
+    </insert> -->
+
+    <select id="getByTimeInterval" resultType="com.gold.cn.model.USD">
+        select * from t_usd where time between #{startTime} and #{endTime}
+    </select>
+
+    <select id="getByTime" parameterType="String" resultType="com.gold.cn.model.USD">
+        select * from t_usd where time = #{time}
+    </select>
+
+    <select id="getRecentDayAu" resultType="com.gold.cn.model.USD">
+       SELECT * FROM t_usd ORDER BY time DESC limit 86400
+    </select>
+
+    <select id="getLatestUSDData" parameterType="java.sql.Timestamp" resultType="com.gold.cn.model.USD">
+       SELECT * FROM t_usd where time >= #{timestamp} order by time asc
+    </select>
+
+    <delete id="deleteByTime" parameterType="String">
+        delete from t_usd where time = #{time}
+    </delete>
+
+
+</mapper>
